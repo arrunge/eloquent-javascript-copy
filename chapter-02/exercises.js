@@ -25,9 +25,16 @@ LOGS =>
 #####
 
 */
-
-function triangles() {
-  
+//I- parameter - number
+//O- that is the size of triangle printed to console
+function triangles(num) {
+  //output string
+  let output = '';
+  for(let counter = 0; counter < num; counter++){
+    output = output + '#';
+    //console log output
+    console.log(output);
+  }
 }
 
 
@@ -46,9 +53,48 @@ on the number:
   - if the number is divisible by both 3 & 5, log "fizzbuzz"
   - if the number is not divisible by 3 or 5, log the number
 */
+//I: two parameters - 
+//O: the num unless div by 3 - fizz, div by 5 - buzz, div by 3and 5 - fizzbuzz
 
 function fizzBuzz(start, end) {
-  
+  //need to determine if start or end is larger
+  //if end is greater - need to count up
+  if(start < end){
+  //loop to go through values start to end
+    for (let counter = start; counter <= end; counter++){
+      ///div by 3 && 5 check - fizzbuzz
+      if(counter % 3 === 0 && counter % 5 === 0){
+        console.log('fizzbuzz');
+      } //div by 3 check - fizz
+      else if (counter % 3 === 0){
+        console.log('fizz');
+      } //div by 5 check - buzz
+      else if (counter % 5 === 0){
+        console.log('buzz');
+      } else {
+        console.log(counter);
+      }
+    }
+  }
+  //if start is greater - need to count down
+  if(start < end){
+    //loop to go through values start to end
+      for (let counter = start; counter >= end; counter--){
+        //div by 3 && 5 check - fizzbuzz
+        if(counter % 3 === 0 && counter % 5 === 0){
+          console.log('fizzbuzz');
+        } //div by 3 check - fizz
+        else if (counter % 3 === 0){
+          console.log('fizz');
+        } //div by 5 check - buzz
+        else if (counter % 5 === 0){
+          console.log('buzz');
+        } else {
+          console.log(counter);
+        }
+      }
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,9 +126,54 @@ LOGS =>
  #
 
 */
+//input - x a number to determine size of board
+//output - is string that makes a chessboard x by x size
+//edge - use line breaks(/n) 
 
 function drawChessboard(x) {
-
+  //var for outputString
+  let outputString = '';
+  let outputArray = [];
+  let oddEvenCol;
+  let oddEvenRow;
+  //loop for number of colums - x
+  for(var counterCol = 0; counterCol < x; counterCol++ ){
+    //loop for number of rows - x
+    //using oddEvenCol - to determine how to start line
+    oddEvenCol = counterCol + 1;
+    if (oddEvenCol % 2 !== 0){
+      for (var counterRow = 0; counterRow < x; counterRow ++){
+       //variable for odd/even
+        oddEvenRow = counterRow + 1;
+       if (oddEvenRow % 2 !== 0){
+          outputArray.push(" ");
+        } else if (oddEvenRow % 2 === 0){
+          outputArray.push("#");
+       }
+     }
+      outputArray.push('\n');
+    }
+    if (oddEvenCol % 2 === 0){
+      for (var counterRow = 0; counterRow < x; counterRow ++){
+       //variable for odd/even
+        oddEvenRow = counterRow + 1;
+       if (oddEvenRow % 2 !== 0){
+          outputArray.push("#");
+        } else if (oddEvenRow % 2 === 0){
+          outputArray.push(" ");
+       }
+     }
+      outputArray.push('\n');
+    }
+  }
+  //loop to go from array to string
+  for(index = 0; index < outputArray.length; index++){
+    outputString = outputString + outputArray[index];
+  }
+  //remmove last page break
+    outputString - '\n';
+  
+  console.log(outputString);
 
 }
 
