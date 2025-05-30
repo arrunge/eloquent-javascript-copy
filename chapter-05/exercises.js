@@ -2,31 +2,71 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten() {
-
+function flatten(array) {
+  let flat = array.reduce(function(acc, current){
+    acc = acc.concat(current);
+    return acc;
+  }, []);
+  return flat;
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
+//I: value, test func, updatefunc, bodyfunc
+//O:
 
-function loop() {
+function loop(value, testFunc, updateFunc, bodyFunc) {
+//loop to continue until value -fails testFunc
+for(track = value; testFunc(track); track = updateFunc(track)){
+  bodyFunc(track);
+}
 
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
-
-function every() {
-
+//I:: array predicate func
+//O: returns true for all pass in predicate func
+function every(array, func) {
+  //loop through array
+  for(let index = 0; index < array.length; index++){
+    if(!func(array[index],index)){
+      return false;
+    }
+  }
+  return true;
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
+function dominantDirection(string) {
+//ltr and rtl variables
+let ltr = [];
+let rtl = [];
+//iterate over string 
+for(let index = 0; index < string.length; index++){
+  //create variable scritps and assign value of invoking characterScript on current index
+  let script = characterScript(string.charCodeAt(index)); //returns object of the language of charCode
+
+//determine if script is not null
+if(script !== null){
+  if(script.direction === 'ltr'){
+    ltr.push(script);
+  } else {
+    rtl.push(script);
+  }
+}
+  
+}
+if(ltr.length > rtl.length){
+  return 'ltr';
+} else {
+  return 'rtl';
+}
 
 }
 
